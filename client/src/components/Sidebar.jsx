@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaHome, FaProjectDiagram, FaTasks, FaCalendarAlt, FaFileAlt, FaComments, FaChartBar, FaCog, FaSignOutAlt } from 'react-icons/fa';
 
 const links = [
@@ -13,6 +13,13 @@ const links = [
 ];
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    localStorage.removeItem('token');
+    navigate('/login');
+  }
+
   return (
     <aside className="flex h-screen w-72 flex-col border-r border-slate-800 bg-slate-950 px-6 py-7 text-slate-200">
       <div className="mb-10">
@@ -35,7 +42,11 @@ export default function Sidebar() {
           </NavLink>
         ))}
       </nav>
-      <button className="mt-4 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/10">
+      <button
+        type="button"
+        onClick={handleLogout}
+        className="mt-4 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/10"
+      >
         <FaSignOutAlt />
         Logout
       </button>

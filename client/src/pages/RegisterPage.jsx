@@ -212,19 +212,19 @@ export default function RegisterPage() {
                 {loading ? 'Creating account...' : 'Create account'}
                 <FaArrowRight />
               </button>
-          </form>
+            </form>
 
-          <div className="mt-6 flex items-center justify-between text-sm text-slate-400">
-            <Link to="/login" className="text-blue-400 hover:text-blue-300">
-              Already have an account?
-            </Link>
-            <Link to="/" className="text-slate-300 hover:text-white">
-              Back to homepage
-            </Link>
-          </div>
-        </motion.div>
+            <div className="mt-6 flex items-center justify-between text-sm text-slate-400">
+              <Link to="/login" className="text-blue-400 hover:text-blue-300">
+                Already have an account?
+              </Link>
+              <Link to="/" className="text-slate-300 hover:text-white">
+                Back to homepage
+              </Link>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
-  </div>
   );
 }
