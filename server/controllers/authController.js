@@ -9,17 +9,17 @@ const signToken = (user) =>
 
 export async function registerUser(req, res) {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return sendError(res, 'User already exists', 400);
     }
 
-    const user = await User.create({ name, email, password, role });
+    const user = await User.create({ name, email, password, role: 'employee' });
     const token = signToken(user);
 
-    return sendSuccess(res, { user: { id: user._id, name, email, role }, token }, 201);
+    return sendSuccess(res, { user: { id: user._id, name: user.name, email: user.email, role: user.role }, token }, 201);
   } catch (error) {
     return sendError(res, error.message, 500);
   }
@@ -51,3 +51,4 @@ export async function getMe(req, res) {
     return sendError(res, error.message, 500);
   }
 }
+
